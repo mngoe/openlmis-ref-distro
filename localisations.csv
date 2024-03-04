@@ -1,8 +1,3 @@
-INSERT INTO referencedata.facility_types (id, active, code, name) VALUES(
-'3b8f731e-9aa2-4f29-af8c-20d0b7f40999', true, 'C', 'Health  center'
-),
-('3b8f732e-9aa2-4f29-af8c-20d0b7f40999', true, 'D', 'Dispensary'),
-('3b8f731e-9aa2-4f29-af8c-20d0b7f40992', true, 'H', 'Hospital');
 id,code,name,levelid,parentid
 686D1179-646B-4EDE-89AC-F9C6263EB5EB,10,Sud,9b497d87-cdd9-400e-bb04-fae0bf6a9491,
 EE9FE505-90BA-4E8B-9DF6-A993D9265103,10AMB,Ambam,93c05138-4550-4461-9e8a-79d5f050c223,686D1179-646B-4EDE-89AC-F9C6263EB5EB
