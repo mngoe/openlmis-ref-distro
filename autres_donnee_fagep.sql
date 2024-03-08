@@ -62,3 +62,7 @@ INSERT INTO referencedata.supply_lines (id, programid, supervisorynodeid, supply
 ),
 ('26ca3e11-44b1-40d7-92f2-e188bc977550', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '9cf76e20-6405-458c-b49f-001e81411c74', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
 ('7094db14-9267-4c66-8ff8-353c3d810d63', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '7df72e02-7775-778c-b49f-001e81400d77', '76bfd0ec-55c2-4d1b-87c9-97e978b3c6b5');
+
+INSERT INTO referencedata.facility_operators (id, code, displayorder, name) VALUES(
+'19dab659-89ff-4bfc-bf2f-3768379a36e3', 'MINSANTE', 1, 'Ministere de la Santé'
+);
