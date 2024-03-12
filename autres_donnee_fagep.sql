@@ -37,7 +37,11 @@ INSERT INTO referencedata.requisition_groups (id, code, description, name, super
 
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', 'GRP2A', '', 'commandes produits programme palu FRPS Centre', '9cf76e20-6405-458c-b49f-001e81411c74'),
 ('ef0c50d2-5846-4ffe-254a-16aff0243e77', 'GRP2B', '', 'commandes produits programme palu FRPS Centre', '9cf76e20-6405-458c-b49f-001e81411c74'),
-('ac7c50d0-8547-4ffe-877a-16afe5243a66', 'GRP2C', '', 'commandes produits programme palu FRPS Centre', '9cf76e20-6405-458c-b49f-001e81411c74');
+('ac7c50d0-8547-4ffe-877a-16afe5243a66', 'GRP2C', '', 'commandes produits programme palu FRPS Centre', '9cf76e20-6405-458c-b49f-001e81411c74'),
+
+('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'GRP3A', '', 'commandes produits programme palu CENAME', '7df72e02-7775-778c-b49f-001e81400d77'),
+('ce1c91d8-1421-4ffe-951a-16aee8529e33', 'GRP3B', '', 'commandes produits programme palu CENAME', '7df72e02-7775-778c-b49f-001e81400d77'),
+('ac6c50d9-2587-4ffe-870b-16afe2352a11', 'GRP3C', '', 'commandes produits programme palu CENAME', '7df72e02-7775-778c-b49f-001e81400d77');
 
 INSERT INTO referencedata.requisition_group_program_schedules(id, directdelivery, processingscheduleid, programid, requisitiongroupid) VALUES (
 'b0cac3da-3b65-4d3b-a1ec-e438a6774bad', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'e5077535-4cef-45ae-a01c-99c1be8829fa'
@@ -46,7 +50,10 @@ INSERT INTO referencedata.requisition_group_program_schedules(id, directdelivery
 ('1c390a22-6e11-4f23-af6e-bcc43c89774e', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'e4867144-4cef-45ae-a01c-52c1be1200fa'),
 ('47449ae0-e114-4d3d-aaff-7a17badd55b1', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'dc0c57d8-2930-4ffe-951a-16aee0353e93'),
 ('96555ae0-e114-4d3d-aaff-7a33bade41b0', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ef0c50d2-5846-4ffe-254a-16aff0243e77'),
-('08066b68-8dd1-48bc-bdc7-a91217811b36', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ac7c50d0-8547-4ffe-877a-16afe5243a66');
+('08066b68-8dd1-48bc-bdc7-a91217811b36', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ac7c50d0-8547-4ffe-877a-16afe5243a66'),
+('52655b11-7ed0-48bc-bec2-a91999011b20', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ad0c99d8-1421-4ffe-951a-16aee0789e00'),
+('58889b44-7ed0-48bc-adc7-a88527811b36', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ce1c91d8-1421-4ffe-951a-16aee8529e33'),
+('69300b88-7ed0-48bc-bdc0-a69521485b17', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ac6c50d9-2587-4ffe-870b-16afe2352a11');
 
 INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilityid) VALUES (
 'e5077535-4cef-45ae-a01c-99c1be8829fa', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b'
@@ -55,7 +62,10 @@ INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilit
 ('e4867144-4cef-45ae-a01c-52c1be1200fa', '97b42fd8-b0a1-41fd-8f75-b576203485a1'),
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
 ('ef0c50d2-5846-4ffe-254a-16aff0243e77', '19f99865-defa-4161-9389-7ef231bcd626'),
-('ac7c50d0-8547-4ffe-877a-16afe5243a66', 'bfd37f57-29a5-4e40-87b2-874d228581c4');
+('ac7c50d0-8547-4ffe-877a-16afe5243a66', 'bfd37f57-29a5-4e40-87b2-874d228581c4'),
+('ad0c99d8-1421-4ffe-951a-16aee0789e00', '76bfd0ec-55c2-4d1b-87c9-97e978b3c6b5'),
+('ce1c91d8-1421-4ffe-951a-16aee8529e33', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
+('ac6c50d9-2587-4ffe-870b-16afe2352a11', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b');
 
 INSERT INTO referencedata.supply_lines (id, programid, supervisorynodeid, supplyingfacilityid) VALUES (
 'c8ff8b0a-d1e5-44ba-9431-70056e9cc82b', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '6cf75e80-6405-458c-b49f-001e81411c94', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b'
