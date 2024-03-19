@@ -62,3 +62,21 @@ INSERT INTO referencedata.supply_lines (id, programid, supervisorynodeid, supply
 INSERT INTO referencedata.facility_operators (id, code, displayorder, name) VALUES(
 '19dab659-89ff-4bfc-bf2f-3768379a36e3', 'MINSANTE', 1, 'Ministere de la Santé'
 );
+
+INSERT INTO stockmanagement.valid_source_assignments (id, facilitytypeid, programid, nodeid) VALUES (
+'e22b65cb-6b57-49be-8db1-11907b915984', '3b8f731e-9aa2-4f29-af8c-20d0b7f40999', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '0ffefea1-5159-4db2-ab26-b36fe4edcc87'
+),
+('00d7cec3-10a9-4cda-ae52-1e65994dace8', '3b8f731e-9aa2-4f29-af8c-20d0b7f40999', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '0ffefea1-5159-4db2-ab26-b36fe4edcc87'),
+('9f2e2d72-e549-48f4-8677-3f466ca4ba7a', '3b8f731e-9aa2-4f29-af8c-20d0b7f40992', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '203636ce-f8f2-43af-ba57-4b6d9d8007ab'),
+('4d95631f-b879-4a54-a859-251640ec8d89', '3b8f731e-9aa2-4f29-af8c-20d0b7f40992', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '203636ce-f8f2-43af-ba57-4b6d9d8007ab'),
+('4d56211f-b879-4a78-a119-251640ec8d55', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '12cd32d0-5c40-4759-8e52-874fef01c023'),
+('ef707956-059f-4014-848f-b672644ca664', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '12cd32d0-5c40-4759-8e52-874fef01c023');
+
+INSERT INTO stockmanagement.valid_destination_assignments (id, facilitytypeid, programid, nodeid) VALUES (
+'c206cbd2-8943-4d34-85c8-aaa9b863086e', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '604027de-112c-412d-8251-c9e552cfdb54'
+),
+('a757fd55-e907-4350-bd52-bdc179a57fc8', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '8f8638c6-5670-4760-8b2f-a36dcaa1b356'),
+('a4809876-3706-457d-a8f4-02ca83759983', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'cc483db0-11eb-4ec3-8335-6730bc901c77'),
+('98c4488d-1941-4852-9658-0328d4e29ae6', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '982d8b42-c31d-4eb6-83d3-6fb1d93a415e'),
+('f9d79a37-271c-43af-adfc-391443ce2487', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '0ffefea1-5159-4db2-ab26-b36fe4edcc87'),
+('902815fc-adb3-4ab6-a040-62dee5f30366', 'e2faaa9e-4b2d-4212-bb60-fd62970b2113', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '203636ce-f8f2-43af-ba57-4b6d9d8007ab');
