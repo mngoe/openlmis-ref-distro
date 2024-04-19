@@ -33,15 +33,23 @@ INSERT INTO referencedata.requisition_groups (id, code, description, name, super
 'e5077535-4cef-45ae-a01c-99c1be8829fa', 'GRP1A', '', 'commandes produits programme palu FRPS Adamaoua', '6cf75e80-6405-458c-b49f-001e81411c94'
 ),
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', 'GRP2A', '', 'commandes produits programme palu FRPS Centre', '9cf76e20-6405-458c-b49f-001e81411c74'),
-('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'GRP3A', '', 'commandes produits programme palu CENAME', '7df72e02-7775-778c-b49f-001e81400d77');
+('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'GRP3A', '', 'commandes produits programme palu CENAME', '7df72e02-7775-778c-b49f-001e81400d77'),
+('a2321135-4cef-45ae-a01c-99c1be8811ee', 'GRP4A', '', 'commandes produits programme palu FRPS Adamaoua 02', '6cf75e80-6405-458c-b49f-001e81411c94');
+INSERT INTO referencedata.requisition_groups (id, code, description, name, supervisorynodeid) VALUES (
+'a5077535-4cef-45ae-a01c-99c1be1119fe', 'GRP1C', '', 'commandes produits programme palu Ako', '8cf76e33-6405-458c-b49f-001e81478c70'
+),
 
 INSERT INTO referencedata.requisition_group_program_schedules(id, directdelivery, processingscheduleid, programid, requisitiongroupid) VALUES (
 'b0cac3da-3b65-4d3b-a1ec-e438a6774bad', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'e5077535-4cef-45ae-a01c-99c1be8829fa'
 ),
 ('47449ae0-e114-4d3d-aaff-7a17badd55b1', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'dc0c57d8-2930-4ffe-951a-16aee0353e93'),
-('52655b11-7ed0-48bc-bec2-a91999011b20', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ad0c99d8-1421-4ffe-951a-16aee0789e00');
+('52655b11-7ed0-48bc-bec2-a91999011b20', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'ad0c99d8-1421-4ffe-951a-16aee0789e00'),
+('69955b10-7ed0-48bc-bec2-a91999011b77', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'a2321135-4cef-45ae-a01c-99c1be8811ee');
+INSERT INTO referencedata.requisition_group_program_schedules(id, directdelivery, processingscheduleid, programid, requisitiongroupid) VALUES (
+'c0cac3da-3b65-4d3b-a1ec-e438a6774fe2', true, '569dc468-07fc-4b7b-983c-dd243cd650b2', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', 'a5077535-4cef-45ae-a01c-99c1be1119fe'
+);
 
-INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilityid) VALUES (
+INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilityid) VALUES(
 'e5077535-4cef-45ae-a01c-99c1be8829fa', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b'
 ),
 ('e5077535-4cef-45ae-a01c-99c1be8829fa', '19f99865-defa-4161-9389-7ef231bcd626'),
@@ -49,9 +57,13 @@ INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilit
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', '864257ce-d200-44b7-8b65-3b286c6931df'),
 ('dc0c57d8-2930-4ffe-951a-16aee0353e93', '97b42fd8-b0a1-41fd-8f75-b576203485a1'),
-('ad0c99d8-1421-4ffe-951a-16aee0789e00', '76bfd0ec-55c2-4d1b-87c9-97e978b3c6b5'),
+('ad0c99d8-1421-4ffe-951a-16aee0789e00', '76bfd0ec-55c2-4d1b-87c9-97e978b3c6b5');
 ('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
-('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b');
+('ad0c99d8-1421-4ffe-951a-16aee0789e00', 'c3c0263f-b671-4e5e-999d-f02ed290cd7b'),
+('a2321135-4cef-45ae-a01c-99c1be8811ee', '9ab5c44f-6d26-48d9-a328-f4d2f3a5a5c3');
+INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilityid) VALUES (
+'a5077535-4cef-45ae-a01c-99c1be1119fe', '864257ce-d200-44b7-8b65-3b286c6931df'
+);
 
 INSERT INTO referencedata.requisition_group_members (requisitiongroupid, facilityid) VALUES (
 'e5077535-4cef-45ae-a01c-99c1be8829fa', '01b0853e-4ba0-44cb-8193-b48aa552a9ae'
@@ -63,6 +75,9 @@ INSERT INTO referencedata.supply_lines (id, programid, supervisorynodeid, supply
 ),
 ('26ca3e11-44b1-40d7-92f2-e188bc977550', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '9cf76e20-6405-458c-b49f-001e81411c74', 'b00b1291-1da2-4807-bbe1-381c0ef61322'),
 ('7094db14-9267-4c66-8ff8-353c3d810d63', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '7df72e02-7775-778c-b49f-001e81400d77', '76bfd0ec-55c2-4d1b-87c9-97e978b3c6b5');
+INSERT INTO referencedata.supply_lines (id, programid, supervisorynodeid, supplyingfacilityid) VALUES (
+'a5ff8b0a-d1e5-44ba-9431-70056e9cc8fe', '612fb7b7-e5bf-4de6-8f9b-313961dea46e', '8cf76e33-6405-458c-b49f-001e81478c70', 'b00b1291-1da2-4807-bbe1-381c0ef61322'
+);
 
 INSERT INTO referencedata.facility_operators (id, code, displayorder, name) VALUES(
 '19dab659-89ff-4bfc-bf2f-3768379a36e3', 'MINSANTE', 1, 'Ministere de la Santé'
