@@ -1,13 +1,13 @@
-FROM python:3.6
+FROM python:3.8.13
 
 # Superset version
-ARG SUPERSET_VERSION=0.29.0rc7
+ARG SUPERSET_VERSION=1.5.2
 
 # Superset-patchup (Ketchup) version
-ARG SUPERSET_PATCHUP_VERSION=v0.1.7
+ARG SUPERSET_PATCHUP_VERSION=v0.5.1
 
 # Default Superset files dir
-ARG APP_DIR=/usr/local/lib/python3.6/site-packages/superset
+ARG APP_DIR=/usr/local/lib/python3.8/site-packages/superset
 
 # Configure environment
 ENV GUNICORN_BIND=0.0.0.0:8088 \
@@ -23,8 +23,9 @@ ENV GUNICORN_BIND=0.0.0.0:8088 \
     SUPERSET_PATCHUP_VERSION=${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_PATCHUP_REPO=https://github.com/OpenLMIS/superset-patchup.git@${SUPERSET_PATCHUP_VERSION} \
     SUPERSET_HOME=/var/lib/superset \
-    APP_DIR=${APP_DIR}
-ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
+    APP_DIR=${APP_DIR} \
+    WORKER_CLASS=gevent
+ENV GUNICORN_CMD_ARGS="--workers ${GUNICORN_WORKERS} -k ${WORKER_CLASS} --timeout ${GUNICORN_TIMEOUT} --bind ${GUNICORN_BIND} --limit-request-line ${GUNICORN_LIMIT_REQUEST_LINE} --limit-request-field_size ${GUNICORN_LIMIT_REQUEST_FIELD_SIZE}"
 
 COPY requirements.txt requirements.txt
 
@@ -43,43 +44,42 @@ RUN useradd -U -m superset && \
         freetds-bin \
         freetds-dev \
         postgresql-client \
+        libssl-dev \
         libffi-dev \
-        libldap2-dev \
-        libpq-dev \
+        python-dev \
         libsasl2-dev \
-        libssl1.0 && \
+        libldap2-dev && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
-    pip install --no-cache-dir -r requirements.txt && \
-    rm requirements.txt && \
+    pip install --upgrade setuptools pip && \
     pip install --no-cache-dir \
-        flask-cors==3.0.3 \
+        gunicorn==20.1.0 \
+        gevent==22.10.2 \
+        git+${SUPERSET_PATCHUP_REPO} \
+        apache-superset==${SUPERSET_VERSION} \
+        apache-superset[cors]==${SUPERSET_VERSION} \
         flask-mail==0.9.1 \
-        flask-JWT-Extended==3.18.2 \
         flask-oauth==0.12 \
-        flask_oauthlib==0.9.5 \
-        requests-oauthlib==1.1.0 \
-        gevent==1.2.2 \
-        impyla==0.14.0 \
-        infi.clickhouse-orm==1.0.2 \
-        psycopg2-binary==2.8.3 \
-        pyathena==1.2.5 \
-        pybigquery==0.4.10 \
-        pyhive==0.5.1 \
-        pyldap==2.4.28 \
-        redis==2.10.5 \
-        sqlalchemy-clickhouse==0.1.5.post0 \
-        sqlalchemy-redshift==0.7.1 \
-        werkzeug==0.16.1 && \
-    pip install --no-cache-dir git+${SUPERSET_PATCHUP_REPO} && \
-    pip uninstall -y apache-superset && \
-    pip install superset==${SUPERSET_VERSION} && \
-    pip uninstall -y sqlalchemy pandas && \
-    pip install sqlalchemy==1.2.18 pandas==0.23.4
+        flask_oauthlib==0.9.5 && \
+    # MarkupSafe, fix missing 'soft_unicode' from 'markupsafe'
+    # fix cryptography, flask, werkzeug to last known working versions
+    pip install -I --no-cache-dir \
+        MarkupSafe==2.0.1 \
+        cryptography==38.0.2 \
+        flask==1.1.4 \
+        werkzeug==1.0.1 \
+        psycopg2-binary==2.9.1
+
+# Configure Filesystem
+RUN find ${APP_DIR} \! -type l -print0 | xargs -0 chown superset:superset
+COPY superset /usr/local/bin
+VOLUME /etc/superset \
+       /var/lib/superset
+WORKDIR $APP_DIR
 
 # Node & npm
 ENV NVM_DIR=/usr/local/nvm
-ENV NODE_VERSION=v10.13.0
+ENV NODE_VERSION=v16.16.0
 
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 RUN . $NVM_DIR/nvm.sh \
@@ -94,7 +94,6 @@ RUN node -v
 RUN npm -v
 
 # Installing dependecies via npm
-RUN npm install -g yarn
 RUN npm install -g po2json
 
 # Fetching dependecies and first build
@@ -103,26 +102,13 @@ RUN wget -P /tmp https://github.com/apache/superset/archive/${SUPERSET_VERSION}.
     && rsync -a \
         --remove-source-files \
         --chown=superset:superset \
-        /tmp/superset-${SUPERSET_VERSION}/superset/assets $APP_DIR \
+        /tmp/superset-${SUPERSET_VERSION}/superset-frontend $APP_DIR \
     && rm -r /tmp/${SUPERSET_VERSION}.zip
-RUN cd $APP_DIR/assets && yarn install
 
-# JS building time tweaks
-RUN mkdir -p /home/superset/.cache
-RUN rsync -a \
-  --remove-source-files \
-  --chown=superset:superset \
-  /usr/local/share/.cache/yarn /home/superset/.cache
-
-# Configure Filesystem
-RUN find ${APP_DIR} \! -type l -print0 | xargs -0 chown superset:superset
-COPY superset /usr/local/bin
-VOLUME /etc/superset \
-       /var/lib/superset
-WORKDIR $APP_DIR
+USER superset:superset
+RUN cd $APP_DIR/superset-frontend && npm ci
 
 # Deploy application
 EXPOSE 8088
 HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 CMD ["gunicorn", "superset:app"]
-USER superset

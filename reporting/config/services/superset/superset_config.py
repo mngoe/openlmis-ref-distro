@@ -36,21 +36,25 @@ OAUTH_PROVIDERS = [
         'icon': 'fa-sign-in',
         'token_key': 'access_token',
         'remote_app': {
-            'consumer_key': OL_SUPERSET_USER,
-            'consumer_secret': OL_SUPERSET_PASSWORD,
-            'request_token_params': {
+            'client_id': OL_SUPERSET_USER,
+            'client_secret': OL_SUPERSET_PASSWORD,
+            'client_kwargs': {
                 'scope': 'read write'
             },
             'access_token_method': 'POST',
             'access_token_headers': {
                 'Authorization': 'Basic %s' % AUTHORIZATION_HEADER_TOKEN
             },
-            'base_url': '%s/api/oauth' % os.environ['OL_BASE_URL'],
+            'api_base_url': '%s/api/oauth' % os.environ['OL_BASE_URL'],
             'access_token_url': '%s/api/oauth/token?grant_type=authorization_code' % os.environ['OL_BASE_URL'],
-            'authorize_url': '%s/api/oauth/authorize?' % os.environ['OL_BASE_URL']
+            'authorize_url': '%s/api/oauth/authorize?' % os.environ['OL_BASE_URL'],
+            'custom_redirect_url': '%s/oauth-authorized/openlmis?' % os.environ['SUPERSET_URL']
         }
     }
 ]
+
+# Set URL scheme for superset-patchup redirect URLs
+PREFERRED_URL_SCHEME = "https"
 
 # The default user self registration role
 AUTH_USER_REGISTRATION_ROLE = "OLMIS_Gamma"
@@ -81,3 +85,9 @@ CORS_OPTIONS = {
 # Add custom roles
 ADD_CUSTOM_ROLES = True
 CUSTOM_ROLES = {'OLMIS_Gamma': {'all_datasource_access'}}
+
+# Enable template processing in SQL - among others for {{current_username()}} macro
+FEATURE_FLAGS = {
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    "VERSIONED_EXPORT": True
+}
